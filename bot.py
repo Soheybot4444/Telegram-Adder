@@ -232,13 +232,14 @@ def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
 
+APP_NAME = os.environ.get('APP_NAME')
 
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url=f"https://{APP_NAME}.herokuapp.com/" + TOKEN)
+    bot.set_webhook(url='https://sobsamsob.herokuapp.com/' + TOKEN)
     return "!", 200
 
 
 if __name__ == "__main__":
-    server.run(host="127.0.0.1", port=int(os.environ.get('PORT', 5000)))
+    server.run(host="0.0.0.0", port=8080)
